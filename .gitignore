@@ -2,3 +2,7 @@ function pointer/filter/filterTestRunner.exe
 function pointer/filter/filterTestRunner.exe.core
 function pointer/map/mapTestRunner.exe
 function pointer/map/mapTestRunner.exe.core
+function pointer/reduce/reduceTestRunner.exe
+function pointer/reduce/reduceTestRunner.exe.core
+function pointer/indexof/indexofTestRunner.exe
+function pointer/indexof/indexofTestRunner.exe.core

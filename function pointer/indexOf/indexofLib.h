@@ -1,0 +1,1 @@
+int indexof(char *, char *);

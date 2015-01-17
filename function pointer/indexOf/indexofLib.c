@@ -2,24 +2,23 @@
 #include <stdio.h>
 #include <string.h>
 
-int indexof(char *mainStr, char *subStr) {
-	int count, startingIndex = 0, length = 0, subStrCount = 0, strLen = strlen(mainStr);
+int indexof(char *string, char *subStr) {
+	int indexOfString = 0, indexOfSubstr = 0, lengthOfString = strlen(string), lengthOfSubstr = strlen(subStr), index = -1;
 
-	for (count = 0; count < strLen; count++) {
-		if(mainStr[count] == subStr[0]){
-			startingIndex = count;
-			break;
+	while(indexOfString + lengthOfSubstr <= lengthOfString) {
+		index++;
+		while(string[indexOfString] == subStr[indexOfSubstr] && indexOfSubstr < lengthOfSubstr){
+			indexOfSubstr++;
+			indexOfString++;
 		}
+
+		if(indexOfSubstr == lengthOfSubstr)
+			return index;
+
+		indexOfSubstr = 0;
+		indexOfString = index;
+		indexOfString++;
 	}
 
-	length = startingIndex + strlen(subStr) - 1;
-
-	for (count = startingIndex; count < length; count++) {
-		if(mainStr[count] != subStr[subStrCount]){
-			return -1;
-		}
-		subStrCount++;
-	}
-
-	return startingIndex;
+	return -1;
 }

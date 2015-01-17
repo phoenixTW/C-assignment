@@ -107,8 +107,8 @@ void test_filter_for_string_should_return_1_for_success() {
 	char *array[3] = {"hello", "dog", "nice"};
 	char *resultArray;
 
-	int isOPresent (char charecter, int index, char *array) {
-		return charecter > 'o';
+	int isOPresent (char* word, int index, char **array) {
+		return word == "hello";
 	}
 
 	int (*callback)(char, int, char*) = &isOPresent;
@@ -116,13 +116,15 @@ void test_filter_for_string_should_return_1_for_success() {
 }
 
 void test_filter_for_string_should_return_1_for_success_and_resultant_array() {
-	char *array[3] = {"hello", "dog", "nice"};
-	char *resultArray;
+	char *array[4] = {"hello", "dog", "nice", "hello"};
+	char **resultArray;
 
-	int isOPresent (char charecter, int index, char *array) {
-		return charecter > 'o';
+	int isOPresent (char* word, int index, char **array) {
+		return word == "hello";
 	}
 
-	int (*callback)(char, int, char*) = &isOPresent;
-	assertEqual(filter_for_string(&array, 3, &resultArray, callback), 1);
+	int (*callback)(char*, int, char**) = &isOPresent;
+	assertEqual(filter_for_string(array, 4, &resultArray, callback), 1);
+	assertEqual(resultArray[0], "hello");
+	assertEqual(resultArray[1], "hello");
 }

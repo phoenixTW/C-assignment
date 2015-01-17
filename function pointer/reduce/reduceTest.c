@@ -1,5 +1,7 @@
 #include "expr_assert.h"
 #include "reduceLib.h"
+#include <string.h>
+
 void test_reduce_for_int_should_return_6_when_the_initial_value_is_0 () {
 	int result;
 	int array[3] = {1, 2, 3};
@@ -60,4 +62,56 @@ void test_reduce_for_float_should_return_6_point_6_when_the_initial_value_is_0 (
 	float (*callback)(float, float) = &addFloat;
 	result = reduce_for_float(array, 3, 0, callback);
 	assertEqual(reduce_for_float(array, 3, 0, callback), 6.6);
+}
+
+void test_reduce_for_char_should_return_c_as_smallest () {
+	char collectionOfCharecter[5] = {'h', 'c', 'l', 'z', 'd'};
+
+	char isSmaller (char prev, char curr) {
+		return (prev < curr) ? prev : curr;
+	}
+
+	char (*p)(char, char) = &isSmaller;
+
+	assertEqual(reduce_for_char(collectionOfCharecter, 5, 'z', p), 'c');
+}
+
+void test_reduce_for_char_should_return_c_as_greatest () {
+	char collectionOfCharecter[5] = {'h', 'c', 'l', 'z', 'd'};
+
+	char isGreater (char prev, char curr) {
+		return (prev > curr) ? prev : curr;
+	}
+
+	char (*p)(char, char) = &isGreater;
+
+	assertEqual(reduce_for_char(collectionOfCharecter, 5, 'z', p), 'z');
+}
+
+void test_reduce_for_string_should_return_hey_as_a_smallest_word () {
+	char *words[3] = {"hello", "hey", "whatsup"};
+	char* smallestWord;
+
+	char *isSmaller (char *prev, char *curr) {
+		return (strlen(prev) < strlen(curr)) ? prev : curr;
+	}
+
+	char* (*callback) (char*, char*) = &isSmaller;
+
+	smallestWord = reduce_for_string(words, 3, "Hello World", callback);
+	assertEqual(strcmp(smallestWord, "hey"), 0);
+}
+
+void test_reduce_for_string_should_return_whatsup_as_a_smallest_word () {
+	char *words[3] = {"hello", "hey", "whatsup"};
+	char* smallestWord;
+
+	char *isGreater (char *prev, char *curr) {
+		return (strlen(prev) > strlen(curr)) ? prev : curr;
+	}
+
+	char* (*callback) (char*, char*) = &isGreater;
+
+	smallestWord = reduce_for_string(words, 3, " ", callback);
+	assertEqual(strcmp(smallestWord, "whatsup"), 0);
 }

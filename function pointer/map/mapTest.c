@@ -1,5 +1,6 @@
 #include "expr_assert.h"
 #include "mapLib.h"
+#include <string.h>
 
 void test_map_for_int_should_return_a_new_array () {
 	int array[3] = {1, 2, 3};
@@ -50,4 +51,24 @@ void test_map_for_char_should_return_a_new_array () {
 	assertEqual(resultArray[0], 'c');
 	assertEqual(resultArray[1], 'd');
 	assertEqual(resultArray[2], 'e');
+}
+
+void test_map_for_string_should_return_a_new_array_with_uppercase_words () {
+	char *array[2] = {"hello", "dog"};
+	char **resultArray;
+
+	char* toUpperCase (char* word, int index, char **array) {
+		void strupp(char *s) {
+			int i;
+			for (i = 0; i < strlen(s); i++)
+				s[i] = toupper(s[i]);
+		}
+
+		strupp(word);
+		return word;
+	}
+	
+	char* (*callback_for_string)(char*, int, char**) = &toUpperCase;
+
+	resultArray = map_for_string(array, 2, callback_for_string);
 }

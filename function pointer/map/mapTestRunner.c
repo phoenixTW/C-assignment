@@ -6,8 +6,8 @@ typedef struct{
 } Test;
 
 //code to be updated starts
-TestFn setup,tearDown,fixtureSetup,fixtureTearDown,test_map_for_int_should_return_a_new_array,test_map_for_float_should_return_a_new_array,test_map_for_char_should_return_a_new_array;
-Test test[] = {"test_map_for_int_should_return_a_new_array",test_map_for_int_should_return_a_new_array,"test_map_for_float_should_return_a_new_array",test_map_for_float_should_return_a_new_array,"test_map_for_char_should_return_a_new_array",test_map_for_char_should_return_a_new_array};
+TestFn setup,tearDown,fixtureSetup,fixtureTearDown,test_map_for_int_should_return_a_new_array,test_map_for_float_should_return_a_new_array,test_map_for_char_should_return_a_new_array,test_map_for_string_should_return_a_new_array_with_uppercase_words;
+Test test[] = {"test_map_for_int_should_return_a_new_array",test_map_for_int_should_return_a_new_array,"test_map_for_float_should_return_a_new_array",test_map_for_float_should_return_a_new_array,"test_map_for_char_should_return_a_new_array",test_map_for_char_should_return_a_new_array,"test_map_for_string_should_return_a_new_array_with_uppercase_words",test_map_for_string_should_return_a_new_array_with_uppercase_words};
 char testFileName[] = {"mapTest.c"};
 void _setup(){/*CALL_SETUP*/}
 void _tearDown(){/*CALL_TEARDOWN*/}

@@ -22,3 +22,27 @@ float reduce_for_float(float *array, int lengthOfArray, float initialValue, floa
 
 	return result;
 }
+
+char reduce_for_char(char *array, int lengthOfArray, char initialValue, char (*callback)(char, char)) {
+	int count;
+	char result;
+
+	for (count = 0; count < lengthOfArray; count++) {
+		result = callback(initialValue, array[count]);
+		initialValue = result;
+	}
+
+	return result;	
+}
+
+char* reduce_for_string(char **array, int lengthOfArray, char* initialValue, char* (*callback)(char*, char*)){
+	int count;
+	char* result;
+
+	for (count = 0; count < lengthOfArray; count++) {
+		result = callback(initialValue, array[count]);
+		initialValue = result;
+	}
+
+	return result;	
+}

@@ -1,5 +1,6 @@
 #include "mapLib.h"
 #include <stdio.h>
+#include <string.h>
 
 int* map_for_int (int *array, int length, int (*callback)(int, int, int *)) {
 	int count, *resultArray;
@@ -35,6 +36,16 @@ char* map_for_char (char *array, int length, int (*callback)(char, int, char *))
 	for (count = 0; count < length; count++) {
 		resultArray[count] = callback(array[count], count, array);
 	}
+
+	return resultArray;
+}
+
+char** map_for_string(char **array, int length, char* callback(char *, int, char **)) {
+	int count;
+	char **resultArray = (char *)malloc(sizeof(char *) * length);
+	
+	for(count = 0; count < length; count++)
+		resultArray[count] = callback(array[count], count, array);
 
 	return resultArray;
 }

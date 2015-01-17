@@ -69,12 +69,22 @@ int filter_for_char(char *array, int length, char **resultArray, int (*callback)
 	return 1;
 }
 
-int filter_for_string(char **array, int length, char **resultArray, int (*callback)(char, int, char *)) {
-	int count;
+int filter_for_string(char **array, int length, char ***resultArray, int (*callback)(char*, int, char *)) {
+	int count, newLength = 0;
 
-	// for (count = 0; count < length; count++) {
-		
-	// }
+	for (count = 0; count < length; count++) {
+		if(callback(array[count], count, array))
+			newLength++;
+	}
+
+	*resultArray = (char **)malloc(sizeof(char *) * newLength);
+	newLength = -1;
+
+	for (count = 0; count < length; count++) {
+		if(callback(array[count], count, array)) {
+			(*resultArray)[++newLength] = array[count];
+		}
+	}
 
 	return 1;
 }
